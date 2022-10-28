@@ -1,0 +1,11 @@
+# Copyright (c) 2021 Accurics - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    accurics.com/app: in-cluster-kubescanner
+  name: in-cluster-kubescanner
+  namespace: {{ .Release.Namespace }}

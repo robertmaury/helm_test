@@ -1,0 +1,18 @@
+# Copyright (c) 2021 Accurics - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+apiVersion: v1
+name: accurics-cli-kubescan
+version: 1.0.0
+appVersion: v1.6.0
+description: A Helm chart for running accurics-cli to scan your cluster's runtime state and push to accurics.
+icon: https://raw.githubusercontent.com/accurics/terrascan/master/docs/img/terrascan-icon-white.png
+home: accurics.com
+keywords:
+  - opa
+  - security
+  - accurics
+maintainers:
+  - name: dev-gaur
+    email: devang.gaur@accurics.com

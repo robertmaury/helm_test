@@ -1,0 +1,41 @@
+# Copyright (c) 2021 Accurics - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    accurics.com/app: in-cluster-kubescanner
+  name: in-cluster-kubescanner
+  namespace: {{ .Release.Namespace }}
+spec:
+  template:
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: {{ .Values.accurics.user }}
+        runAsGroup: {{ .Values.accurics.group }}
+      serviceAccountName: in-cluster-kubescanner
+      containers:
+      - name: test-container
+        image: {{ .Values.accurics.image }}
+        args: [ "scan", "k8s", "-cluster", "-config=/etc/config/accurics-cli-config", "-in-cluster", "-verbose"]
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        securityContext:
+          allowPrivilegeEscalation: false
+        resources:
+          requests:
+            cpu: {{ .Values.accurics.cpu.request }}
+            memory: {{ .Values.accurics.memory.request }}
+          limits:
+            cpu: {{ .Values.accurics.cpu.limit }}
+            memory: {{ .Values.accurics.memory.limit }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: cli-config
+      restartPolicy: Never
+  backoffLimit: 4

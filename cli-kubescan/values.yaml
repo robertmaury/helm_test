@@ -1,0 +1,14 @@
+# Copyright (c) 2021 Accurics - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+
+accurics:
+  image: docker.io/accurics/cli-kubescan-arm64:1.0.41
+  memory:
+    request: 100Mi
+    limit: 200Mi
+  cpu:
+    request: 20m
+    limit: 1
+  user: 101
+  group: 101
